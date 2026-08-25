@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-
-  base: '/SALVADOR_Module7_VueSystem/'
+  test: {
+    environment: 'jsdom'
+  }
 })
