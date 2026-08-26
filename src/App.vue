@@ -72,6 +72,20 @@ function showFormMessage(message, type = 'success') {
 }
 
 function addTask(newTask) {
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  const dueDate = new Date(newTask.dueDate)
+  dueDate.setHours(0, 0, 0, 0)
+
+  if (dueDate < today) {
+    showFormMessage(
+      'Due date cannot be in the past.',
+      'error'
+    )
+    return
+  }
+
   tasks.value.push({
     id: Date.now(),
     createdAt: new Date().toISOString(),
