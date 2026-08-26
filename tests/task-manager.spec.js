@@ -136,10 +136,12 @@ describe('Student Task Management System', () => {
     expect(wrapper.emitted('delete-task')[0][0]).toBe(25)
   })
 
-
- // TEST 5 — SEARCH TASK
+// TEST 5 — SEARCH TASK
 it('should filter tasks when searching', async () => {
   const wrapper = mount(App)
+
+  // Log in so the task management interface is displayed
+  wrapper.vm.isLoggedIn = true
 
   wrapper.vm.tasks = [
     {
@@ -167,6 +169,8 @@ it('should filter tasks when searching', async () => {
   const searchInput = wrapper.find(
     'input[placeholder="Search tasks..."]'
   )
+
+  expect(searchInput.exists()).toBe(true)
 
   await searchInput.setValue('Mathematics')
 
