@@ -75,7 +75,8 @@ function handleLogin() {
   const savedUser = localStorage.getItem('studentUser')
 
   if (!savedUser) {
-    errorMessage.value = 'No registered account found. Please register first.'
+    errorMessage.value =
+      'No registered account found. Please register first.'
     return
   }
 
@@ -84,17 +85,23 @@ function handleLogin() {
   try {
     user = JSON.parse(savedUser)
   } catch {
-    errorMessage.value = 'Account data is invalid. Please register again.'
+    errorMessage.value =
+      'Account data is invalid. Please register again.'
     return
   }
 
-  if (email.value.trim().toLowerCase() !== user.email.toLowerCase()) {
-    errorMessage.value = 'No account found with this email address.'
+  if (
+    email.value.trim().toLowerCase() !==
+    user.email.toLowerCase()
+  ) {
+    errorMessage.value =
+      'No account found with this email address.'
     return
   }
 
   if (password.value !== user.password) {
-    errorMessage.value = 'Incorrect password. Please try again.'
+    errorMessage.value =
+      'Incorrect password. Please try again.'
     return
   }
 
@@ -104,18 +111,29 @@ function handleLogin() {
 
 <template>
   <div class="auth-card">
+
+    <!-- Header -->
     <div class="auth-header">
       <div class="auth-logo">✓</div>
 
       <h2>Welcome Back</h2>
 
-      <p>Log in to access your student workspace</p>
+      <p>
+        Log in to access your student workspace
+      </p>
     </div>
 
-    <form @submit.prevent="handleLogin" class="auth-form">
+    <!-- Login Form -->
+    <form
+      @submit.prevent="handleLogin"
+      class="auth-form"
+    >
 
       <!-- Error Message -->
-      <div v-if="errorMessage" class="error-banner">
+      <div
+        v-if="errorMessage"
+        class="error-banner"
+      >
         {{ errorMessage }}
       </div>
 
@@ -137,9 +155,14 @@ function handleLogin() {
         <label>Password</label>
 
         <div class="password-wrapper">
+
           <input
             v-model="password"
-            :type="showPassword ? 'text' : 'password'"
+            :type="
+              showPassword
+                ? 'text'
+                : 'password'
+            "
             placeholder="Enter your password"
             autocomplete="current-password"
             required
@@ -148,18 +171,28 @@ function handleLogin() {
           <button
             type="button"
             class="toggle-pwd-btn"
-            @click="showPassword = !showPassword"
+            @click="
+              showPassword = !showPassword
+            "
           >
             {{ showPassword ? 'Hide' : 'Show' }}
           </button>
+
         </div>
       </div>
 
       <!-- Password Strength -->
-      <div v-if="password" class="password-strength">
+      <div
+        v-if="password"
+        class="password-strength"
+      >
 
+        <!-- Strength Header -->
         <div class="strength-header">
-          <span>Password Strength</span>
+
+          <span>
+            Password Strength
+          </span>
 
           <span
             class="strength-label"
@@ -167,89 +200,165 @@ function handleLogin() {
           >
             {{ passwordStrength.label }}
           </span>
+
         </div>
 
+        <!-- Strength Bar -->
         <div class="strength-track">
+
           <div
             class="strength-bar"
             :class="passwordStrength.className"
-            :style="{ width: passwordStrength.percentage + '%' }"
+            :style="{
+              width:
+                passwordStrength.percentage + '%'
+            }"
           ></div>
+
         </div>
 
+        <!-- Password Requirements -->
         <div class="password-checks">
 
+          <!-- 8 Characters -->
           <div
             class="check-item"
-            :class="{ valid: passwordChecks.length }"
+            :class="{
+              valid: passwordChecks.length
+            }"
           >
             <span class="check-circle">
-              {{ passwordChecks.length ? '✓' : '' }}
+              {{
+                passwordChecks.length
+                  ? '✓'
+                  : ''
+              }}
             </span>
+
             <span>8 Chars</span>
           </div>
 
+          <!-- Uppercase -->
           <div
             class="check-item"
-            :class="{ valid: passwordChecks.uppercase }"
+            :class="{
+              valid: passwordChecks.uppercase
+            }"
           >
             <span class="check-circle">
-              {{ passwordChecks.uppercase ? '✓' : '' }}
+              {{
+                passwordChecks.uppercase
+                  ? '✓'
+                  : ''
+              }}
             </span>
+
             <span>A-Z</span>
           </div>
 
+          <!-- Lowercase -->
           <div
             class="check-item"
-            :class="{ valid: passwordChecks.lowercase }"
+            :class="{
+              valid: passwordChecks.lowercase
+            }"
           >
             <span class="check-circle">
-              {{ passwordChecks.lowercase ? '✓' : '' }}
+              {{
+                passwordChecks.lowercase
+                  ? '✓'
+                  : ''
+              }}
             </span>
+
             <span>a-z</span>
           </div>
 
+          <!-- Number -->
           <div
             class="check-item"
-            :class="{ valid: passwordChecks.number }"
+            :class="{
+              valid: passwordChecks.number
+            }"
           >
             <span class="check-circle">
-              {{ passwordChecks.number ? '✓' : '' }}
+              {{
+                passwordChecks.number
+                  ? '✓'
+                  : ''
+              }}
             </span>
+
             <span>123</span>
           </div>
 
+          <!-- Special Character -->
           <div
             class="check-item"
-            :class="{ valid: passwordChecks.special }"
+            :class="{
+              valid: passwordChecks.special
+            }"
           >
             <span class="check-circle">
-              {{ passwordChecks.special ? '✓' : '' }}
+              {{
+                passwordChecks.special
+                  ? '✓'
+                  : ''
+              }}
             </span>
+
             <span>@#$</span>
           </div>
 
         </div>
+
+        <!-- Password Example -->
+        <div class="password-example">
+
+          <div class="example-title">
+            Example:
+            <strong>Student@2026</strong>
+          </div>
+
+          <div class="example-description">
+            Use at least 8 characters with
+            uppercase, lowercase, number,
+            and special character.
+          </div>
+
+        </div>
+
       </div>
 
       <!-- Login Button -->
-      <button type="submit" class="submit-btn">
+      <button
+        type="submit"
+        class="submit-btn"
+      >
         Log In
       </button>
 
     </form>
 
+    <!-- Footer -->
     <div class="auth-footer">
-      <span>Don't have an account?</span>
+
+      <span>
+        Don't have an account?
+      </span>
 
       <button
         type="button"
-        @click="emit('switch-to-register')"
+        @click="
+          emit('switch-to-register')
+        "
         class="toggle-btn"
       >
         Register here
       </button>
+
     </div>
+
   </div>
 </template>
 
@@ -377,6 +486,10 @@ function handleLogin() {
 
 .password-strength {
   margin-top: -0.4rem;
+  background-color: #0b1120;
+  border: 1px solid #232f48;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .strength-header {
@@ -482,6 +595,35 @@ function handleLogin() {
   color: #ffffff;
 }
 
+/* PASSWORD EXAMPLE */
+
+.password-example {
+  margin-top: 0.9rem;
+  padding: 0.8rem;
+  background-color: #111827;
+  border: 1px solid #26344f;
+  border-radius: 6px;
+}
+
+.example-title {
+  color: #d1d5db;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.example-title strong {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+.example-description {
+  color: #9ca3af;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+/* LOGIN BUTTON */
+
 .submit-btn {
   background-color: #2563eb;
   color: #ffffff;
@@ -498,6 +640,8 @@ function handleLogin() {
 .submit-btn:hover {
   background-color: #1d4ed8;
 }
+
+/* FOOTER */
 
 .auth-footer {
   margin-top: 1.75rem;
@@ -524,6 +668,8 @@ function handleLogin() {
   text-decoration: underline;
 }
 
+/* MOBILE */
+
 @media (max-width: 480px) {
   .auth-card {
     padding: 1.5rem;
@@ -531,6 +677,18 @@ function handleLogin() {
 
   .password-checks {
     justify-content: flex-start;
+  }
+
+  .check-item {
+    font-size: 0.72rem;
+  }
+
+  .password-example {
+    padding: 0.7rem;
+  }
+
+  .example-description {
+    font-size: 0.75rem;
   }
 }
 </style>
