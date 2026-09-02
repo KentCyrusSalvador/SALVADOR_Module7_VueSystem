@@ -157,3 +157,43 @@ SALVADOR_Module7_VueSystem/
 ├── package-lock.json
 ├── README.md
 └── vite.config.js
+## Module 9 - Software Evolution
+
+### Change Request
+
+**CR-M9-01 - Password Strength and Login Validation Improvement**
+
+**Maintenance Type:** Preventive Maintenance
+
+The authentication interface was evolved to provide password-strength feedback and clear password requirements while preserving the existing login and registration behavior.
+
+### Affected Component
+
+- `src/components/LoginView.vue`
+
+### Evolution Implemented
+
+- Added password-strength feedback.
+- Added password requirements for stronger passwords.
+- Added validation feedback while entering a password.
+- Preserved the existing login and registration interface.
+- Preserved existing tested behavior.
+
+### Testing Results
+
+- Automated tests: **7 passed**
+- Test files: **2 passed**
+- Production build: **Successful**
+- GitHub Actions CI: **Successful**
+
+### Regression Testing
+
+The existing Module 8 automated tests were retained and executed after the change. All existing tests continued to pass.
+
+### Version
+
+**1.1.0**
+
+### Known Limitations
+
+The change is limited to the authentication interface. No new backend, database, API, or unrelated system functionality was introduced.
