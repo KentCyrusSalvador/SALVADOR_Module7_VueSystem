@@ -197,3 +197,16 @@ The existing Module 8 automated tests were retained and executed after the chang
 ### Known Limitations
 
 The change is limited to the authentication interface. No new backend, database, API, or unrelated system functionality was introduced.
+## M9-08 — Updated Test Cases
+
+### Manual Test Cases and Results
+
+| Test Case | Expected Result | Actual Result | Status |
+|---|---|---|---|
+| Password with 8 or more characters | 8-character requirement is satisfied | Requirement is satisfied | PASS |
+| Password contains uppercase letter | Uppercase requirement is satisfied | Requirement is satisfied | PASS |
+| Password contains lowercase letter | Lowercase requirement is satisfied | Requirement is satisfied | PASS |
+| Password contains a number | Number requirement is satisfied | Requirement is satisfied | PASS |
+| Password contains a special character | Special-character requirement is satisfied | Requirement is satisfied | PASS |
+| All password requirements are satisfied | Password strength shows Strong | Password strength shows Strong | PASS |
+| Confirm Password matches Password | Registration can proceed | Passwords match | PASS |
